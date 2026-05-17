@@ -6,9 +6,9 @@ if SERVER then
 end
 
 local enabledVar = CreateConVar( "advmat_sv_overridefootsteps", "1", { FCVAR_ARCHIVE }, "Enables/disables the advmat clientside footstep sound system." )
-SetGlobalBool( "advmat_sv_overridefootsteps", enabledVar:GetBool() )
+SetGlobal2Bool( "advmat_sv_overridefootsteps", enabledVar:GetBool() )
 cvars.AddChangeCallback( "advmat_sv_overridefootsteps", function( _, _, new )
-	SetGlobalBool( "advmat_sv_overridefootsteps", tobool( new ) )
+	SetGlobal2Bool( "advmat_sv_overridefootsteps", tobool( new ) )
 end, "advmat_cachebool" )
 
 local IsValid = IsValid
@@ -21,7 +21,7 @@ advMat_Table.DetailTranslations = {
 	rock = "detail/rock_detail_01",
 }
 
--- cache of built "UID"s so mats with the same stuff don't build twice 
+-- cache of built "UID"s so mats with the same stuff don't build twice
 advMat_Table.stored = advMat_Table.stored or {}
 
 function advMat_Table:ResetAdvMaterial( ent )
